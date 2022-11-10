@@ -35,11 +35,28 @@ console.log("JS loaded")
  * User should then see a message to refresh their page, or there'll be a button to do it
  */
 
+// setting up HTML grabbers
+const petName = document.querySelector(".pet-name")
+const petAge = document.querySelector(".pet-age")
+const petHunger = document.querySelector(".pet-hunger")
+const petSleepiness = document.querySelector(".pet-sleepiness")
+const petBoredom = document.querySelector(".pet-boredom")
+
+// name your pet
+// const chosenName = prompt("What is your pet's name?")
+const chosenName = "Dude"
+
 // instantiating (?) the pet
 const pet = {
-    name: null,
+    name: chosenName,
+    age: 0,
+    alive: true,
     hunger: 1,
     sleepiness: 1,
     boredom: 1,
-    age: 0,
 }
+petName.textContent = `Name: ${pet.name}`
+petAge.textContent = `Age: ${pet.age}`
+petHunger.textContent = `Hunger: ${pet.hunger}`
+petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
+petBoredom.textContent = `Boredom: ${pet.boredom}`
