@@ -2,9 +2,16 @@ body {
     background: #EEE;
 }
 
+
 .pet-image {
     display: flex;
+    text-align: center;
     justify-content: center;
+    max-width: 50%;
     font-size: 60px;
+    background-color: #EEE;
 }
 
+.pet-state {
+    text-align: center;
+}

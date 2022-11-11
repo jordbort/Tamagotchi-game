@@ -36,6 +36,7 @@ console.log("JS loaded")
  */
 
 // setting up HTML grabbers
+const petContainer = document.querySelector(".pet-image")
 const petState = document.querySelector(".pet-state")
 const petName = document.querySelector(".pet-name")
 const petAge = document.querySelector(".pet-age")
@@ -202,6 +203,22 @@ const pet = {
         petMood.textContent = `Mood: ${this.currentMood}`
         petState.textContent = `${this.mood.sleepy}`
     },
+    play() {
+        //
+    },
+    eat() {
+        //
+    },
+    sleep() {
+        petContainer.style.backgroundColor = "#111"
+        // const sleeping =
+        this.canBecomeBored = false
+        this.canBecomeHungry = false
+        this.canBecomeSleepy = false
+        this.currentMood = "sleeping"
+        petMood.textContent = `Mood: ${this.currentMood}`
+        petState.textContent = `${this.mood.sleeping}`
+    },
 }
 petName.textContent = `Name: ${pet.name}`
 petAge.textContent = `Age: ${pet.age}`
@@ -209,10 +226,10 @@ petMood.textContent = `Mood: ${pet.currentMood}`
 petBoredom.textContent = `Boredom: ${pet.boredom}`
 petHunger.textContent = `Hunger: ${pet.hunger}`
 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
+pet.getMature()
 pet.getBored()
 pet.getHungry()
 pet.getSleepy()
-pet.getMature()
 
 // functions
 const interactionOn = () => {
@@ -247,5 +264,5 @@ feedBtn.addEventListener("click", () => {
     pet.hunger -= 5
 })
 sleepBtn.addEventListener("click", () => {
-    pet.sleepiness -= 5
+    pet.sleep()
 })
