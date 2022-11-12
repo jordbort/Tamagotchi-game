@@ -40,7 +40,7 @@ const petState = document.querySelector(".pet-state")
 const statusMsg = document.querySelector("h3")
 const petName = document.querySelector(".pet-name")
 const petAge = document.querySelector(".pet-age")
-const petMood = document.querySelector(".pet-mood")
+const petStatus = document.querySelector(".pet-status")
 const petBoredom = document.querySelector(".pet-boredom")
 const petHunger = document.querySelector(".pet-hunger")
 const petSleepiness = document.querySelector(".pet-sleepiness")
@@ -54,7 +54,7 @@ const pet = {
     name: "Yaboi",
     age: 0,
     alive: true,
-    currentMood: "content",
+    currentStatus: "content",
     mood: {
         content: "🙂️",
         bored: "😮‍💨️",
@@ -83,7 +83,7 @@ const pet = {
                 statusMsg.textContent = `${this.name} just had a birthday!`
                 petAge.textContent = `Age: ${pet.age}`
             }
-        }, 30000)
+        }, 60000)
     },
     getBored() {
         const bored = setInterval( () => {
@@ -95,7 +95,7 @@ const pet = {
                 petBoredom.textContent = `Boredom: ${pet.boredom}`
                 if(this.boredom >= 10) {
                     console.log(`${this.name} has died of boredom at age ${this.age}.`)
-                    statusMsg.textContent = `${this.name} has died of boredom at age ${this.age}.`
+                    statusMsg.textContent = `${this.name} got bored to death at age ${this.age}.`
                     this.die()
                     clearInterval(bored)
                     return
@@ -104,7 +104,7 @@ const pet = {
                     this.bored()
                 }
             }
-        }, 2500)
+        }, 3000)
     },
     getHungry() {
         const hungry = setInterval( () => {
@@ -116,7 +116,7 @@ const pet = {
                 petHunger.textContent = `Hunger: ${pet.hunger}`
                 if(this.hunger >= 10) {
                     console.log(`${this.name} has died of hunger at age ${this.age}.`)
-                    statusMsg.textContent = `${this.name} has died of hunger at age ${this.age}.`
+                    statusMsg.textContent = `${this.name} has died of starvation at age ${this.age}.`
                     this.die()
                     clearInterval(hungry)
                     return
@@ -125,7 +125,7 @@ const pet = {
                     this.hungry()
                 }
             }
-        }, 4000)
+        }, 5000)
     },
     getSleepy() {
         const sleepy = setInterval( () => {
@@ -137,7 +137,7 @@ const pet = {
                 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
                 if(this.sleepiness >= 10) {
                     console.log(`${this.name} has died of sleepiness at age ${this.age}.`)
-                    statusMsg.textContent = `${this.name} has died of sleepiness at age ${this.age}.`
+                    statusMsg.textContent = `${this.name} has died of exhaustion at age ${this.age}.`
                     this.die()
                     clearInterval(sleepy)
                     return
@@ -146,20 +146,20 @@ const pet = {
                     this.sleepy()
                 }
             }
-        }, 12000)
+        }, 1000)
     },
     die() {
         this.disableStats()
         this.canDoNone()
-        this.currentMood = "dead"
+        this.currentStatus = "dead"
         this.alive = false
-        petMood.textContent = `Mood: ${this.currentMood}`
+        petStatus.textContent = `Status: ${this.currentStatus}`
         petState.textContent = `${this.mood.dead}`
     },
     bored() {
         console.log(`Warning: ${this.name} is getting bored! (boredom: ${this.boredom})`)
-        this.currentMood = "bored"
-        petMood.textContent = `Mood: ${this.currentMood}`
+        this.currentStatus = "bored"
+        petStatus.textContent = `Status: ${this.currentStatus}`
         petState.textContent = `${this.mood.bored}`
         if(this.boredom === 7) {
             statusMsg.textContent = `${this.name} is feeling a little bored.`
@@ -174,8 +174,8 @@ const pet = {
     },
     hungry() {
         console.log(`Warning: ${this.name} is getting hungry! (hunger: ${this.hunger})`)
-        this.currentMood = "hungry"
-        petMood.textContent = `Mood: ${this.currentMood}`
+        this.currentStatus = "hungry"
+        petStatus.textContent = `Status: ${this.currentStatus}`
         petState.textContent = `${this.mood.hungry}`
         if(this.hunger === 7) {
             statusMsg.textContent = `${this.name} is feeling hungry.`
@@ -190,8 +190,8 @@ const pet = {
     },
     sleepy() {
         console.log(`Warning: ${this.name} is getting sleepy! (sleepiness: ${this.sleepiness})`)
-        this.currentMood = "sleepy"
-        petMood.textContent = `Mood: ${this.currentMood}`
+        this.currentStatus = "sleepy"
+        petStatus.textContent = `Status: ${this.currentStatus}`
         petState.textContent = `${this.mood.sleepy}`
         if(this.sleepiness === 7) {
             statusMsg.textContent = `${this.name} is getting a little tired.`
@@ -209,8 +209,8 @@ const pet = {
         statusMsg.textContent = `${this.name} is playing with you.`
         this.interactionOff()
         this.canDoNone()
-        this.currentMood = "playing"
-        petMood.textContent = `Mood: ${this.currentMood}`
+        this.currentStatus = "playing"
+        petStatus.textContent = `Status: ${this.currentStatus}`
         petState.textContent = `${this.mood.playing}`
         const playing = setInterval( () => {
             if(this.boredom > 1) {
@@ -223,8 +223,8 @@ const pet = {
                 statusMsg.textContent = `${this.name} is happy!`
                 clearInterval(playing)
                 petBoredom.textContent = `Boredom: ${pet.boredom}`
-                this.currentMood = "content"
-                petMood.textContent = `Mood: ${this.currentMood}`
+                this.currentStatus = "content"
+                petStatus.textContent = `Status: ${this.currentStatus}`
                 petState.textContent = `${this.mood.content}`
                 this.interactionOn()
                 this.canDoAll()
@@ -237,8 +237,8 @@ const pet = {
         statusMsg.textContent = `${this.name} is having a snack.`
         this.interactionOff()
         this.canDoNone()
-        this.currentMood = "eating"
-        petMood.textContent = `Mood: ${this.currentMood}`
+        this.currentStatus = "eating"
+        petStatus.textContent = `Status: ${this.currentStatus}`
         petState.textContent = `${this.mood.eating}`
         const eating = setInterval( () => {
             if(this.hunger > 1) {
@@ -251,8 +251,8 @@ const pet = {
                 statusMsg.textContent = `${this.name} is full!`
                 clearInterval(eating)
                 petHunger.textContent = `Hunger: ${pet.hunger}`
-                this.currentMood = "content"
-                petMood.textContent = `Mood: ${this.currentMood}`
+                this.currentStatus = "content"
+                petStatus.textContent = `Status: ${this.currentStatus}`
                 petState.textContent = `${this.mood.content}`
                 this.interactionOn()
                 this.canDoAll()
@@ -266,8 +266,8 @@ const pet = {
         petContainer.style.backgroundColor = "#222"
         this.interactionOff()
         this.canDoNone()
-        this.currentMood = "sleeping"
-        petMood.textContent = `Mood: ${this.currentMood}`
+        this.currentStatus = "sleeping"
+        petStatus.textContent = `Status: ${this.currentStatus}`
         petState.textContent = `${this.mood.sleeping}`
         const sleeping = setInterval( () => {
             if(this.sleepiness > 1) {
@@ -281,8 +281,8 @@ const pet = {
                 clearInterval(sleeping)
                 petContainer.style.backgroundColor = "#CCC"
                 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
-                this.currentMood = "content"
-                petMood.textContent = `Mood: ${this.currentMood}`
+                this.currentStatus = "content"
+                petStatus.textContent = `Status: ${this.currentStatus}`
                 petState.textContent = `${this.mood.content}`
                 this.interactionOn()
                 this.canDoAll()
@@ -349,7 +349,7 @@ console.log(`Say hello to ${pet.name}!`)
 statusMsg.textContent = `Say hello to ${pet.name}!`
 petName.textContent = `Name: ${pet.name}`
 petAge.textContent = `Age: ${pet.age}`
-petMood.textContent = `Mood: ${pet.currentMood}`
+petStatus.textContent = `Status: ${pet.currentStatus}`
 petBoredom.textContent = `Boredom: ${pet.boredom}`
 petHunger.textContent = `Hunger: ${pet.hunger}`
 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
