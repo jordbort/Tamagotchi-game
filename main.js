@@ -37,6 +37,7 @@
 // SET UP HTML GRABBERS
 const petContainer = document.querySelector(".pet-container")
 const petState = document.querySelector(".pet-state")
+const statusMsg = document.querySelector("h3")
 const petName = document.querySelector(".pet-name")
 const petAge = document.querySelector(".pet-age")
 const petMood = document.querySelector(".pet-mood")
@@ -71,7 +72,6 @@ const pet = {
     canPlay: false,
     canEat: false,
     canSleep: false,
-    maturity: 1,
     boredom: 1,
     hunger: 1,
     sleepiness: 1,
@@ -92,7 +92,7 @@ const pet = {
                 this.boredom++
                 petBoredom.textContent = `Boredom: ${pet.boredom}`
                 if(this.boredom >= 10) {
-                    console.log(`${this.name} has died of boredom at age ${this.age}. (maturity: ${this.maturity})`)
+                    console.log(`${this.name} has died of boredom at age ${this.age}.`)
                     this.die()
                     clearInterval(bored)
                     return
@@ -112,7 +112,7 @@ const pet = {
                 this.hunger++
                 petHunger.textContent = `Hunger: ${pet.hunger}`
                 if(this.hunger >= 10) {
-                    console.log(`${this.name} has died of hunger at age ${this.age}. (maturity: ${this.maturity})`)
+                    console.log(`${this.name} has died of hunger at age ${this.age}.`)
                     this.die()
                     clearInterval(hungry)
                     return
@@ -132,7 +132,8 @@ const pet = {
                 this.sleepiness++
                 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
                 if(this.sleepiness >= 10) {
-                    console.log(`${this.name} has died of sleepiness at age ${this.age}. (maturity: ${this.maturity})`)
+                    console.log(`${this.name} has died of sleepiness at age ${this.age}.`)
+                    // console.log(`${this.name} has died of sleepiness at age ${this.age}.`)
                     this.die()
                     clearInterval(sleepy)
                     return
@@ -305,6 +306,7 @@ document.querySelector(".refresh").addEventListener("click", () => {
 
 // GAME START
 console.log(`Say hello to ${pet.name}!`)
+statusMsg.textContent = `Say hello to ${pet.name}!`
 petName.textContent = `Name: ${pet.name}`
 petAge.textContent = `Age: ${pet.age}`
 petMood.textContent = `Mood: ${pet.currentMood}`
