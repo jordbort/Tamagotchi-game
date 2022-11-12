@@ -50,8 +50,8 @@ const sleepBtn = document.querySelector(".pet-sleep")
 
 // PET DATA AND METHODS
 const pet = {
-    // name: prompt("What is your pet's name?"),
-    name: "Yaboi",
+    name: prompt("What is your pet's name?"),
+    // name: "Yaboi",
     age: 0,
     alive: true,
     currentStatus: "content",
