@@ -1,4 +1,3 @@
-console.log("JS loaded")
 /** NOTES
  * Webpage should feature: 
  *      - the pet on screen
@@ -35,7 +34,7 @@ console.log("JS loaded")
  * User should then see a message to refresh their page, or there'll be a button to do it
  */
 
-// setting up HTML grabbers
+// SET UP HTML GRABBERS
 const petContainer = document.querySelector(".pet-image")
 const petState = document.querySelector(".pet-state")
 const petName = document.querySelector(".pet-name")
@@ -48,43 +47,10 @@ const playBtn = document.querySelector(".pet-play")
 const feedBtn = document.querySelector(".pet-feed")
 const sleepBtn = document.querySelector(".pet-sleep")
 
-// pet states
-// mood and corresponding image
-// content 🙂️
-// bored 😮‍💨️
-// hungry 🤤️
-// sleepy 🥱️
-// dead 😵️
-// playing 😄️
-// eating 😋️
-// sleeping 😴️
-
-// event listeners
-// sleepBtn.addEventListener("click", () => {
-//     console.log("zzz")
-//     game.clearInterval(gameTimer)
-// })
-
-// name your pet
-// const chosenName = prompt("What is your pet's name?")
-const chosenName = "Dude"
-
-
-// instantiating (?) the pet
-// boredom is the number
-// bored is the timer
-// getBored() starts the timer and controls `alive`
-// hunger is the number
-// hungry is the timer
-// getHungry() starts the timer and controls `alive`
-// sleepiness is the number
-// sleepy is the timer
-// getSleepy() starts the timer and controls `alive`
-// maturity is the number
-// aging is the timer
-// getMature() starts the timer and controls `alive`
+// PET DATA AND METHODS
 const pet = {
-    name: chosenName,
+    // name: prompt("What is your pet's name?"),
+    name: "Yaboi",
     age: 0,
     alive: true,
     currentMood: "content",
@@ -98,36 +64,35 @@ const pet = {
         eating: "😋️",
         sleeping: "😴️",
     },
-    canBecomeOlder: true,
-    canBecomeBored: true,
-    canBecomeHungry: true,
-    canBecomeSleepy: true,
+    canGetOlder: false,
+    canGetBored: false,
+    canGetHungry: false,
+    canGetSleepy: false,
+    canPlay: false,
+    canEat: false,
+    canSleep: false,
     maturity: 1,
     boredom: 1,
     hunger: 1,
     sleepiness: 1,
-    getMature() {
+    getOlder() {
         const aging = setInterval( () => {
-            if(this.canBecomeOlder) {
-                this.maturity++
-                if(this.maturity % 25 === 0) {
-                    this.age++
-                    petAge.textContent = `Age: ${pet.age}`
-                }
-                // console.log(`maturity: ${this.maturity} - is ${chosenName} alive: ${this.alive}`)
+            if(this.canGetOlder) {
+                this.age++
+                petAge.textContent = `Age: ${pet.age}`
             }
-        }, 50)
+        }, 5000)
     },
     getBored() {
         const bored = setInterval( () => {
-            if(this.canBecomeBored) {
+            if(this.canGetBored) {
                 if(this.boredom <= 0) {
                     this.boredom = 0
                 }
                 this.boredom++
                 petBoredom.textContent = `Boredom: ${pet.boredom}`
                 if(this.boredom >= 10) {
-                    console.log(`${chosenName} has died of boredom at age ${this.age}. (maturity: ${this.maturity})`)
+                    console.log(`${this.name} has died of boredom at age ${this.age}. (maturity: ${this.maturity})`)
                     this.die()
                     clearInterval(bored)
                     return
@@ -136,18 +101,18 @@ const pet = {
                     this.bored()
                 }
             }
-        }, 500)
+        }, 2000)
     },
     getHungry() {
         const hungry = setInterval( () => {
-            if(this.canBecomeHungry) {
+            if(this.canGetHungry) {
                 if(this.hunger <= 0) {
                     this.hunger = 0
                 }
                 this.hunger++
                 petHunger.textContent = `Hunger: ${pet.hunger}`
                 if(this.hunger >= 10) {
-                    console.log(`${chosenName} has died of hunger at age ${this.age}. (maturity: ${this.maturity})`)
+                    console.log(`${this.name} has died of hunger at age ${this.age}. (maturity: ${this.maturity})`)
                     this.die()
                     clearInterval(hungry)
                     return
@@ -156,18 +121,18 @@ const pet = {
                     this.hungry()
                 }
             }
-        }, 500)
+        }, 2000)
     },
     getSleepy() {
         const sleepy = setInterval( () => {
-            if(this.canBecomeSleepy) {
+            if(this.canGetSleepy) {
                 if(this.sleepiness <= 0) {
                     this.sleepiness = 0
                 }
                 this.sleepiness++
                 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
                 if(this.sleepiness >= 10) {
-                    console.log(`${chosenName} has died of sleepiness at age ${this.age}. (maturity: ${this.maturity})`)
+                    console.log(`${this.name} has died of sleepiness at age ${this.age}. (maturity: ${this.maturity})`)
                     this.die()
                     clearInterval(sleepy)
                     return
@@ -176,93 +141,176 @@ const pet = {
                     this.sleepy()
                 }
             }
-        }, 500)
+        }, 2000)
     },
     die() {
+        this.disableStats()
+        this.canDoNone()
         this.currentMood = "dead"
         this.alive = false
-        interactionOff()
         petMood.textContent = `Mood: ${this.currentMood}`
         petState.textContent = `${this.mood.dead}`
     },
     bored() {
-        console.log(`Warning: ${chosenName} is getting bored!! (boredom: ${this.boredom})`)
+        console.log(`Warning: ${this.name} is getting bored!! (boredom: ${this.boredom})`)
         this.currentMood = "bored"
         petMood.textContent = `Mood: ${this.currentMood}`
         petState.textContent = `${this.mood.bored}`
     },
     hungry() {
-        console.log(`Warning: ${chosenName} is getting hungry!! (hunger: ${this.hunger})`)
+        console.log(`Warning: ${this.name} is getting hungry!! (hunger: ${this.hunger})`)
         this.currentMood = "hungry"
         petMood.textContent = `Mood: ${this.currentMood}`
         petState.textContent = `${this.mood.hungry}`
     },
     sleepy() {
-        console.log(`Warning: ${chosenName} is getting sleepy!! (sleepiness: ${this.sleepiness})`)
+        console.log(`Warning: ${this.name} is getting sleepy!! (sleepiness: ${this.sleepiness})`)
         this.currentMood = "sleepy"
         petMood.textContent = `Mood: ${this.currentMood}`
         petState.textContent = `${this.mood.sleepy}`
     },
     play() {
-        //
+        console.log(`${this.name} is playing...`)
+        this.interactionOff()
+        this.canDoNone()
+        this.currentMood = "playing"
+        petMood.textContent = `Mood: ${this.currentMood}`
+        petState.textContent = `${this.mood.playing}`
+        const playing = setInterval( () => {
+            if(this.boredom > 1) {
+                this.boredom--
+                console.log(`${this.name} is still playing... (boredom: ${this.boredom})`)
+                petBoredom.textContent = `Boredom: ${pet.boredom}`
+            }
+            else {
+                console.log(`${this.name} is happy!`)
+                clearInterval(playing)
+                petBoredom.textContent = `Boredom: ${pet.boredom}`
+                this.currentMood = "content"
+                petMood.textContent = `Mood: ${this.currentMood}`
+                petState.textContent = `${this.mood.content}`
+                this.interactionOn()
+                this.canDoAll()
+                return
+            }
+        }, 1000)
     },
     eat() {
-        //
+        console.log(`${this.name} is eating...`)
+        this.interactionOff()
+        this.canDoNone()
+        this.currentMood = "eating"
+        petMood.textContent = `Mood: ${this.currentMood}`
+        petState.textContent = `${this.mood.eating}`
+        const eating = setInterval( () => {
+            if(this.hunger > 1) {
+                this.hunger--
+                console.log(`${this.name} is still eating... (hunger: ${this.hunger})`)
+                petHunger.textContent = `Hunger: ${pet.hunger}`
+            }
+            else {
+                console.log(`${this.name} is full!`)
+                clearInterval(eating)
+                petHunger.textContent = `Hunger: ${pet.hunger}`
+                this.currentMood = "content"
+                petMood.textContent = `Mood: ${this.currentMood}`
+                petState.textContent = `${this.mood.content}`
+                this.interactionOn()
+                this.canDoAll()
+                return
+            }
+        }, 1000)
     },
     sleep() {
+        console.log(`${this.name} is sleeping...`)
         petContainer.style.backgroundColor = "#111"
-        // const sleeping =
-        this.canBecomeBored = false
-        this.canBecomeHungry = false
-        this.canBecomeSleepy = false
+        this.interactionOff()
+        this.canDoNone()
         this.currentMood = "sleeping"
         petMood.textContent = `Mood: ${this.currentMood}`
         petState.textContent = `${this.mood.sleeping}`
+        const sleeping = setInterval( () => {
+            if(this.sleepiness > 1) {
+                this.sleepiness--
+                console.log(`${this.name} is still sleeping... (sleepiness: ${this.sleepiness})`)
+                petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
+            }
+            else {
+                console.log(`${this.name} is awake!`)
+                clearInterval(sleeping)
+                petContainer.style.backgroundColor = "#EEE"
+                petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
+                this.currentMood = "content"
+                petMood.textContent = `Mood: ${this.currentMood}`
+                petState.textContent = `${this.mood.content}`
+                this.interactionOn()
+                this.canDoAll()
+                return
+            }
+        }, 1000)
+    },
+    enableStats() {
+        this.canGetOlder = true
+        this.canGetBored = true
+        this.canGetHungry = true
+        this.canGetSleepy = true
+    },
+    disableStats() {
+        this.canGetOlder = false
+        this.canGetBored = false
+        this.canGetHungry = false
+        this.canGetSleepy = false
+    },
+    interactionOn() {
+        this.canGetBored = true
+        this.canGetHungry = true
+        this.canGetSleepy = true
+    },
+    interactionOff() {
+        this.canGetBored = false
+        this.canGetHungry = false
+        this.canGetSleepy = false
+    },
+    canDoAll() {
+        this.canPlay = true
+        this.canEat = true
+        this.canSleep = true
+    },
+    canDoNone() {
+        this.canPlay = false
+        this.canEat = false
+        this.canSleep = false
     },
 }
+
+// EVENT LISTENERS
+playBtn.addEventListener("click", () => {
+    if(pet.canPlay) {
+        pet.play()
+    }
+})
+feedBtn.addEventListener("click", () => {
+    if(pet.canEat) {
+        pet.eat()
+    }
+})
+sleepBtn.addEventListener("click", () => {
+    if(pet.canSleep) {
+        pet.sleep()
+    }
+})
+
+// GAME START
+console.log(`Say hello to ${pet.name}!`)
 petName.textContent = `Name: ${pet.name}`
 petAge.textContent = `Age: ${pet.age}`
 petMood.textContent = `Mood: ${pet.currentMood}`
 petBoredom.textContent = `Boredom: ${pet.boredom}`
 petHunger.textContent = `Hunger: ${pet.hunger}`
 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
-pet.getMature()
+pet.enableStats()
+pet.canDoAll()
+pet.getOlder()
 pet.getBored()
 pet.getHungry()
 pet.getSleepy()
-
-// functions
-const interactionOn = () => {
-    pet.canBecomeOlder = true
-    pet.canBecomeBored = true
-    pet.canBecomeHungry = true
-    pet.canBecomeSleepy = true
-}
-const interactionOff = () => {
-    pet.canBecomeOlder = false
-    pet.canBecomeBored = false
-    pet.canBecomeHungry = false
-    pet.canBecomeSleepy = false
-}
-const decrHunger = () => {
-    pet.hunger+=1
-}
-const decrSleepiness = () => {
-    pet.sleepiness+=1
-}
-const decrBoredom = () => {
-    pet.boredom+=1
-}
-const decrAge = () => {
-    pet.age+=1
-}
-
-playBtn.addEventListener("click", () => {
-    pet.boredom -= 5
-})
-feedBtn.addEventListener("click", () => {
-    pet.hunger -= 5
-})
-sleepBtn.addEventListener("click", () => {
-    pet.sleep()
-})

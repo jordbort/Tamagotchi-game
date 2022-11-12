@@ -1,17 +1,26 @@
 body {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    background: #999;
+}
+
+ul {
+    width: 460px;
+    align-items: left;
+    list-style: none;
     background: #EEE;
 }
 
-
 .pet-image {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    max-width: 50%;
+    width: 500px;
+    align-items: center;
     font-size: 60px;
     background-color: #EEE;
 }
 
 .pet-state {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    background: #EEE;
 }
