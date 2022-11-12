@@ -299,6 +299,9 @@ sleepBtn.addEventListener("click", () => {
         pet.sleep()
     }
 })
+document.querySelector(".refresh").addEventListener("click", () => {
+    location.reload()
+})
 
 // GAME START
 console.log(`Say hello to ${pet.name}!`)

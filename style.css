@@ -6,6 +6,10 @@ body {
     align-items: center;
 }
 
+h3 {
+    text-align: center;
+}
+
 div {
     border-radius: 10px;
     margin: 6px auto;
