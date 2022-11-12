@@ -35,7 +35,7 @@
  */
 
 // SET UP HTML GRABBERS
-const petContainer = document.querySelector(".pet-image")
+const petContainer = document.querySelector(".pet-container")
 const petState = document.querySelector(".pet-state")
 const petName = document.querySelector(".pet-name")
 const petAge = document.querySelector(".pet-age")
@@ -223,7 +223,7 @@ const pet = {
     },
     sleep() {
         console.log(`${this.name} is sleeping...`)
-        petContainer.style.backgroundColor = "#111"
+        petContainer.style.backgroundColor = "#222"
         this.interactionOff()
         this.canDoNone()
         this.currentMood = "sleeping"
@@ -238,7 +238,7 @@ const pet = {
             else {
                 console.log(`${this.name} is awake!`)
                 clearInterval(sleeping)
-                petContainer.style.backgroundColor = "#EEE"
+                petContainer.style.backgroundColor = "#CCC"
                 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
                 this.currentMood = "content"
                 petMood.textContent = `Mood: ${this.currentMood}`

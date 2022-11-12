@@ -1,26 +1,47 @@
 body {
+    background: #111;
+    color: #FFF;
     display: flex;
     flex-direction: column;
-    justify-items: center;
-    background: #999;
+    align-items: center;
+}
+
+div {
+    border-radius: 10px;
+    margin: 6px auto;
 }
 
 ul {
     width: 460px;
     align-items: left;
     list-style: none;
-    background: #EEE;
+    justify-content: space-between;
 }
 
-.pet-image {
+.pet-container {
+    background: #CCC;
     width: 500px;
     align-items: center;
     font-size: 60px;
-    background-color: #EEE;
 }
 
 .pet-state {
     display: flex;
     justify-content: center;
-    background: #EEE;
+}
+
+.pet-stats {
+    background-color: #333;
+    margin: 6px auto;
+}
+
+.pet-interactions {
+    background-color: #333;
+    width: 500px;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 0 10px;
 }
