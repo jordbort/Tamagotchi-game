@@ -47,6 +47,7 @@ const petSleepiness = document.querySelector(".pet-sleepiness")
 const playBtn = document.querySelector(".pet-play")
 const feedBtn = document.querySelector(".pet-feed")
 const sleepBtn = document.querySelector(".pet-sleep")
+const petButtons = document.querySelector(".pet-interactions")
 
 // PET DATA AND METHODS
 const pet = {
@@ -146,9 +147,10 @@ const pet = {
                     this.sleepy()
                 }
             }
-        }, 1000)
+        }, 15000)
     },
     die() {
+        petButtons.style.display = "none"
         this.disableStats()
         this.canDoNone()
         this.currentStatus = "dead"
@@ -206,6 +208,7 @@ const pet = {
     },
     play() {
         console.log(`${this.name} is playing...`)
+        petButtons.style.display = "none"
         statusMsg.textContent = `${this.name} is playing with you.`
         this.interactionOff()
         this.canDoNone()
@@ -222,6 +225,7 @@ const pet = {
                 console.log(`${this.name} is happy!`)
                 statusMsg.textContent = `${this.name} is happy!`
                 clearInterval(playing)
+                petButtons.style.display = "block"
                 petBoredom.textContent = `Boredom: ${pet.boredom}`
                 this.currentStatus = "content"
                 petStatus.textContent = `Status: ${this.currentStatus}`
@@ -234,6 +238,7 @@ const pet = {
     },
     eat() {
         console.log(`${this.name} is eating...`)
+        petButtons.style.display = "none"
         statusMsg.textContent = `${this.name} is having a snack.`
         this.interactionOff()
         this.canDoNone()
@@ -250,6 +255,7 @@ const pet = {
                 console.log(`${this.name} is full!`)
                 statusMsg.textContent = `${this.name} is full!`
                 clearInterval(eating)
+                petButtons.style.display = "block"
                 petHunger.textContent = `Hunger: ${pet.hunger}`
                 this.currentStatus = "content"
                 petStatus.textContent = `Status: ${this.currentStatus}`
@@ -262,6 +268,7 @@ const pet = {
     },
     sleep() {
         console.log(`${this.name} is sleeping...`)
+        petButtons.style.display = "none"
         statusMsg.textContent = `${this.name} is taking a nap.`
         petContainer.style.backgroundColor = "#222"
         this.interactionOff()
@@ -279,6 +286,7 @@ const pet = {
                 console.log(`${this.name} is awake!`)
                 statusMsg.textContent = `${this.name} woke up!`
                 clearInterval(sleeping)
+                petButtons.style.display = "block"
                 petContainer.style.backgroundColor = "#CCC"
                 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
                 this.currentStatus = "content"
@@ -353,6 +361,7 @@ petStatus.textContent = `Status: ${pet.currentStatus}`
 petBoredom.textContent = `Boredom: ${pet.boredom}`
 petHunger.textContent = `Hunger: ${pet.hunger}`
 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
+petButtons.style.display = "block"
 pet.enableStats()
 pet.canDoAll()
 pet.getOlder()
