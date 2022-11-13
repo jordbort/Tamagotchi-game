@@ -245,6 +245,7 @@ const pet = {
             }
             else {
                 console.log(`${this.name} is happy!`)
+                statusMsg.style.color = "#EEE"
                 statusMsg.textContent = `${this.name} is happy!`
                 clearInterval(playing)
                 petButtons.style.display = "block"
@@ -278,6 +279,7 @@ const pet = {
             }
             else {
                 console.log(`${this.name} is full!`)
+                statusMsg.style.color = "#EEE"
                 statusMsg.textContent = `${this.name} is full!`
                 clearInterval(eating)
                 petButtons.style.display = "block"
@@ -312,6 +314,7 @@ const pet = {
             }
             else {
                 console.log(`${this.name} is awake!`)
+                statusMsg.style.color = "#EEE"
                 statusMsg.textContent = `${this.name} woke up!`
                 clearInterval(sleeping)
                 petButtons.style.display = "block"
