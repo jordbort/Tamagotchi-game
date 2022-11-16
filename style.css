@@ -4,55 +4,78 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-h2 {
-    text-align: center;
+h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: auto;
 }
 
 div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
     margin: 6px auto;
 }
 
 ul {
-    min-width: 360px;
-    max-width: 460px;
+    width: 90%;
+    max-width: 500px;
     align-items: left;
     list-style: none;
     justify-content: space-between;
+    align-items: center;
 }
 
 .pet-container {
-    background: #CCC;
-    min-width: 400px;
-    max-width: 500px;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    background: #CCC;
+    width: 90%;
+    max-width: 500px;
     font-size: 60px;
 }
 
 .pet-state {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .pet-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #333;
-    min-width: 400px;
+    width: 90%;
     max-width: 500px;
     margin: 6px auto;
 }
 
 .pet-interactions {
+    display: flex;
+    justify-content: center;
     background-color: #333;
-    min-width: 400px;
+    width: 90%;
     max-width: 500px;
-    text-align: center;
     display: none;
 }
 
+.pet-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    margin: auto;
+}
+
 .button {
-    display: inline-block;
-    padding: 0 10px;
+    margin: auto;
 }

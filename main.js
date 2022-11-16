@@ -37,7 +37,7 @@
 // SET UP HTML GRABBERS
 const petContainer = document.querySelector(".pet-container")
 const petState = document.querySelector(".pet-state")
-const statusMsg = document.querySelector("h2")
+const statusMsg = document.querySelector("h3")
 const petName = document.querySelector(".pet-name")
 const petAge = document.querySelector(".pet-age")
 const petStatus = document.querySelector(".pet-status")
@@ -51,8 +51,8 @@ const petButtons = document.querySelector(".pet-interactions")
 
 // PET DATA AND METHODS
 const pet = {
-    name: prompt("What is your pet's name?"),
-    // name: "Yaboi",
+    // name: prompt("What is your pet's name?"),
+    name: "Yaboi",
     age: 0,
     alive: true,
     currentStatus: "content",
@@ -96,7 +96,6 @@ const pet = {
                 this.boredom++
                 petBoredom.textContent = `Boredom: ${pet.boredom}`
                 if(this.boredom >= 12) {
-                    console.log(`${this.name} has died of boredom at age ${this.age}.`)
                     statusMsg.style.color = "#E00"
                     statusMsg.textContent = `${this.name} got bored to death at age ${this.age}.`
                     this.die()
@@ -118,7 +117,6 @@ const pet = {
                 this.hunger++
                 petHunger.textContent = `Hunger: ${pet.hunger}`
                 if(this.hunger >= 12) {
-                    console.log(`${this.name} has died of hunger at age ${this.age}.`)
                     statusMsg.style.color = "#E00"
                     statusMsg.textContent = `${this.name} has died of starvation at age ${this.age}.`
                     this.die()
@@ -140,7 +138,6 @@ const pet = {
                 this.sleepiness++
                 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
                 if(this.sleepiness >= 12) {
-                    console.log(`${this.name} has died of sleepiness at age ${this.age}.`)
                     statusMsg.style.color = "#E00"
                     statusMsg.textContent = `${this.name} has died of exhaustion at age ${this.age}.`
                     this.die()
@@ -163,7 +160,6 @@ const pet = {
         petState.textContent = `${this.mood.dead}`
     },
     bored() {
-        console.log(`Warning: ${this.name} is getting bored! (boredom: ${this.boredom})`)
         this.currentStatus = "bored"
         petStatus.style.color = "#E00"
         petBoredom.style.color = "#E00"
@@ -184,7 +180,6 @@ const pet = {
         }
     },
     hungry() {
-        console.log(`Warning: ${this.name} is getting hungry! (hunger: ${this.hunger})`)
         this.currentStatus = "hungry"
         petStatus.style.color = "#E00"
         petHunger.style.color = "#E00"
@@ -205,7 +200,6 @@ const pet = {
         }
     },
     sleepy() {
-        console.log(`Warning: ${this.name} is getting sleepy! (sleepiness: ${this.sleepiness})`)
         this.currentStatus = "sleepy"
         petStatus.style.color = "#E00"
         petSleepiness.style.color = "#E00"
@@ -226,7 +220,6 @@ const pet = {
         }
     },
     play() {
-        console.log(`${this.name} is playing...`)
         petButtons.style.display = "none"
         petStatus.style.color = "#EEE"
         petBoredom.style.color = "#EEE"
@@ -240,11 +233,9 @@ const pet = {
         const playing = setInterval( () => {
             if(this.boredom > 1) {
                 this.boredom--
-                console.log(`${this.name} is still playing... (boredom: ${this.boredom})`)
                 petBoredom.textContent = `Boredom: ${pet.boredom}`
             }
             else {
-                console.log(`${this.name} is happy!`)
                 statusMsg.style.color = "#EEE"
                 statusMsg.textContent = `${this.name} is happy!`
                 clearInterval(playing)
@@ -260,7 +251,6 @@ const pet = {
         }, 1000)
     },
     eat() {
-        console.log(`${this.name} is eating...`)
         petButtons.style.display = "none"
         petStatus.style.color = "#EEE"
         petHunger.style.color = "#EEE"
@@ -274,11 +264,9 @@ const pet = {
         const eating = setInterval( () => {
             if(this.hunger > 1) {
                 this.hunger--
-                console.log(`${this.name} is still eating... (hunger: ${this.hunger})`)
                 petHunger.textContent = `Hunger: ${pet.hunger}`
             }
             else {
-                console.log(`${this.name} is full!`)
                 statusMsg.style.color = "#EEE"
                 statusMsg.textContent = `${this.name} is full!`
                 clearInterval(eating)
@@ -294,7 +282,6 @@ const pet = {
         }, 1000)
     },
     sleep() {
-        console.log(`${this.name} is sleeping...`)
         petButtons.style.display = "none"
         petStatus.style.color = "#EEE"
         petSleepiness.style.color = "#EEE"
@@ -309,11 +296,9 @@ const pet = {
         const sleeping = setInterval( () => {
             if(this.sleepiness > 1) {
                 this.sleepiness--
-                console.log(`${this.name} is still sleeping... (sleepiness: ${this.sleepiness})`)
                 petSleepiness.textContent = `Sleepiness: ${pet.sleepiness}`
             }
             else {
-                console.log(`${this.name} is awake!`)
                 statusMsg.style.color = "#EEE"
                 statusMsg.textContent = `${this.name} woke up!`
                 clearInterval(sleeping)
@@ -381,7 +366,6 @@ sleepBtn.addEventListener("click", () => {
 })
 
 // GAME START
-console.log(`Say hello to ${pet.name}!`)
 statusMsg.textContent = `Say hello to ${pet.name}!`
 petName.textContent = `Name: ${pet.name}`
 petAge.textContent = `Age: ${pet.age}`
